@@ -1,0 +1,229 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Custom API for delivering RTCM recommendations within the 'Kraft Antragsstrecke 2.0'",
+    "version" : "0.0.1",
+    "title" : "RTCM AZD Kraft Recommendation Service"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/rtcm-ops/ask_recommendations/0.0.1",
+  "tags" : [ {
+    "name" : "ASK_Recommendations",
+    "description" : "RTCM Recommendations for Antragsstecke Kraft 2.0"
+  } ],
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/ASK_Recommendations" : {
+      "post" : {
+        "tags" : [ "ASK_Recommendations" ],
+        "summary" : "Deliver Input data and retrieve recommendations",
+        "description" : "",
+        "operationId" : "getRecommendations",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Input parameters for calculation of the recommendations",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ASK_InputParameters"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ASK_Recommendations"
+            }
+          },
+          "400" : {
+            "description" : "error during rule execution"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "petstore_auth" : {
+      "type" : "oauth2",
+      "authorizationUrl" : "http://petstore.swagger.io/oauth/dialog",
+      "flow" : "implicit",
+      "scopes" : {
+        "write:pets" : "modify pets in your account",
+        "read:pets" : "read your pets"
+      }
+    },
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "api_key",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "ASK_InputParameters" : {
+      "type" : "object",
+      "properties" : {
+        "versicherung.fahrzeug.erstzulassungVN" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2016-12-31"
+        },
+        "versicherung.fahrzeug.erstzulassungVNunbekannt" : {
+          "type" : "boolean"
+        },
+        "versicherung.fahrzeug.erstzulassung" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2016-12-31"
+        },
+        "versicherung.fahrzeug.erstzulassungVNuebernehmen" : {
+          "type" : "boolean"
+        },
+        "versicherung.fahrzeug.hsn" : {
+          "type" : "string",
+          "example" : "1313"
+        },
+        "versicherung.fahrzeug.tsn" : {
+          "type" : "string",
+          "example" : "BMD"
+        },
+        "versicherung.fahrzeug.treibstoff" : {
+          "type" : "string"
+        },
+        "versicherung.fahrzeug.finanzierung" : {
+          "type" : "string",
+          "enum" : [ "LEASING", "FINANZIERUNG", "BARKAUF" ]
+        },
+        "versicherung.fahrzeug.kmleistung" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 12555
+        },
+        "versicherung.versicherungsnehmer.adresse.plz" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 80339
+        },
+        "versicherung.versicherungsnehmer.schadenfreiheitsklasseHaftpflicht" : {
+          "type" : "string",
+          "enum" : [ "M", "S", "SF0", "SF1_2", "SF1", "SF2", "SF3", "SF4", "SF5", "SF6", "SF7", "SF8", "SF9", "SF10", "SF11", "SF12", "SF13", "SF14", "SF15", "SF16", "SF17", "SF18", "SF19", "SF20", "SF21", "SF22", "SF23", "SF24", "SF25", "SF26", "SF27", "SF28", "SF29", "SF30", "SF31", "SF32", "SF33", "SF34", "SF35" ]
+        },
+        "versicherung.versicherungsnehmer.schadenfreiheitsklasseVollkasko" : {
+          "type" : "string",
+          "enum" : [ "KEINE", "M", "SF0", "SF1_2", "SF1", "SF2", "SF3", "SF4", "SF5", "SF6", "SF7", "SF8", "SF9", "SF10", "SF11", "SF12", "SF13", "SF14", "SF15", "SF16", "SF17", "SF18", "SF19", "SF20", "SF21", "SF22", "SF23", "SF24", "SF25", "SF26", "SF27", "SF28", "SF29", "SF30", "SF31", "SF32", "SF33", "SF34", "SF35" ]
+        },
+        "versicherung.versicherungsnehmer.geburtsdatum" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2016-12-31"
+        },
+        "versicherung.nutzerkreisdaten.nutzerkreis" : {
+          "type" : "string",
+          "enum" : [ "VN", "PARTNER", "FAMILIE", "BELIEBIG" ]
+        },
+        "versicherung.nutzerkreisdaten.alterJuengsterFahrer" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 24
+        },
+        "versicherung.nutzerkreisdaten.familienmitglied.geburtsdatum" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2016-12-31"
+        },
+        "versicherung.nutzerkreisdaten.partner.geburtsdatum" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2016-12-31"
+        },
+        "rateModel.config.umfang" : {
+          "type" : "string",
+          "enum" : [ "HAFTPFLICHT", "TEILKASKO", "VOLLKASKO" ]
+        },
+        "rateModel.selectedProduct.product.enumValue" : {
+          "type" : "string",
+          "enum" : [ "BASIS", "IDEAL", "ONLINE" ]
+        },
+        "rateModel.config.haftpflicht.bonusdrive.hinzugefuegt" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.vollkasko.werkstattdirekt.hinzugefuegt" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.teilkasko.werkstattdirekt.hinzugefuegt" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.haftpflicht.schutzbriefnotruf.hinzugefuegt" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.haftpflicht.autoplus.hinzugefuegt" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.haftpflicht.auslandsschadenschutz.hinzugefuegt" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.insassenUnfall.hinzugefuegt" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.vollkasko.mietwagenplus.hinzugefuegt" : {
+          "type" : "boolean"
+        }
+      },
+      "xml" : {
+        "name" : "ASK_InputParameters"
+      }
+    },
+    "ASK_Recommendations" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "enum" : [ "OK", "error executing rule" ]
+        },
+        "rateModel.config.umfang.empfehlung" : {
+          "type" : "string",
+          "enum" : [ "HAFTPFLICHT", "TEILKASKO", "VOLLKASKO" ]
+        },
+        "rateModel.selectedProduct.product.enumValue.empfehlung" : {
+          "type" : "string",
+          "enum" : [ "BASIS", "IDEAL", "ONLINE" ]
+        },
+        "rateModel.config.haftpflicht.bonusdrive.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.vollkasko.werkstattdirekt.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.teilkasko.werkstattdirekt.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.haftpflicht.schutzbriefnotruf.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.haftpflicht.autoplus.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.haftpflicht.auslandsschadenschutz.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.insassenUnfall.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.vollkasko.mietwagenplus.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        }
+      },
+      "xml" : {
+        "name" : "ASK_Recommendations"
+      }
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Swagger",
+    "url" : "http://swagger.io"
+  }
+}
