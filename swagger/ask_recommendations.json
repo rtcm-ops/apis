@@ -151,25 +151,25 @@
         "rateModel.config.haftpflicht.bonusdrive.hinzugefuegt" : {
           "type" : "boolean"
         },
+        "rateModel.config.haftpflicht.rabattschutz.hinzugefuegt" : {
+          "type" : "boolean"
+        },
         "rateModel.config.vollkasko.werkstattdirekt.hinzugefuegt" : {
           "type" : "boolean"
         },
         "rateModel.config.teilkasko.werkstattdirekt.hinzugefuegt" : {
           "type" : "boolean"
         },
-        "rateModel.config.haftpflicht.schutzbriefnotruf.hinzugefuegt" : {
+        "rateModel.config.haftpflicht.autonotruf.hinzugefuegt" : {
           "type" : "boolean"
         },
-        "rateModel.config.haftpflicht.autoplus.hinzugefuegt" : {
+        "rateModel.config.haftpflicht.premiumschutzbrief.hinzugefuegt" : {
           "type" : "boolean"
         },
         "rateModel.config.haftpflicht.auslandsschadenschutz.hinzugefuegt" : {
           "type" : "boolean"
         },
-        "rateModel.config.insassenUnfall.hinzugefuegt" : {
-          "type" : "boolean"
-        },
-        "rateModel.config.vollkasko.mietwagenplus.hinzugefuegt" : {
+        "rateModel.config.fahrerschutz.hinzugefuegt" : {
           "type" : "boolean"
         }
       },
@@ -180,19 +180,34 @@
     "ASK_Recommendations" : {
       "type" : "object",
       "properties" : {
-        "status" : {
+        "rtcm.status" : {
           "type" : "string",
           "enum" : [ "OK", "error executing rule" ]
+        },
+        "rtcm.recommendation_id" : {
+          "type" : "string",
+          "format" : "uuid"
         },
         "rateModel.config.umfang.empfehlung" : {
           "type" : "string",
           "enum" : [ "HAFTPFLICHT", "TEILKASKO", "VOLLKASKO" ]
         },
+        "rateModel.config.umfang.empfehlung.gruende" : {
+          "type" : "string",
+          "enum" : [ "FAHRZEUGWERT", "MARDER", "HAGEL", "WILD", "LEASING" ]
+        },
         "rateModel.selectedProduct.product.enumValue.empfehlung" : {
           "type" : "string",
           "enum" : [ "BASIS", "IDEAL", "ONLINE" ]
         },
+        "rateModel.selectedProduct.product.enumValue.empfehlung.gruende" : {
+          "type" : "string",
+          "enum" : [ "FAHRZEUGWERT", "NEUWAGEN", "LEASING", "FINANZIERUNG", "ELEKTRO" ]
+        },
         "rateModel.config.haftpflicht.bonusdrive.hinzugefuegt.empfehlung" : {
+          "type" : "boolean"
+        },
+        "rateModel.config.haftpflicht.rabattschutz.hinzugefuegt" : {
           "type" : "boolean"
         },
         "rateModel.config.vollkasko.werkstattdirekt.hinzugefuegt.empfehlung" : {
@@ -201,24 +216,18 @@
         "rateModel.config.teilkasko.werkstattdirekt.hinzugefuegt.empfehlung" : {
           "type" : "boolean"
         },
-        "rateModel.config.haftpflicht.schutzbriefnotruf.hinzugefuegt.empfehlung" : {
+        "rateModel.config.haftpflicht.autonotruf.hinzugefuegt.empfehlung" : {
           "type" : "boolean"
         },
-        "rateModel.config.haftpflicht.autoplus.hinzugefuegt.empfehlung" : {
+        "rateModel.config.haftpflicht.premiumschutzbrief.hinzugefuegt.empfehlung" : {
           "type" : "boolean"
         },
         "rateModel.config.haftpflicht.auslandsschadenschutz.hinzugefuegt.empfehlung" : {
           "type" : "boolean"
         },
-        "rateModel.config.insassenUnfall.hinzugefuegt.empfehlung" : {
-          "type" : "boolean"
-        },
-        "rateModel.config.vollkasko.mietwagenplus.hinzugefuegt.empfehlung" : {
+        "rateModel.config.fahrerschutz.hinzugefuegt.empfehlung" : {
           "type" : "boolean"
         }
-      },
-      "xml" : {
-        "name" : "ASK_Recommendations"
       }
     }
   },
